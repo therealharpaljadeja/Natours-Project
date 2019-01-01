@@ -1,0 +1,79 @@
+.story{
+    width: 75%;
+    margin: 0 auto;
+    box-shadow: 0 3rem 6rem rgba($color-black,.1);
+    background-color: rgba($color-white,.6); 
+    border-radius: 3px;
+    padding: 6rem;
+    padding-left: 9rem;
+    font-size: $default-font-size;
+    transform: skewX(-12deg);
+    margin-bottom: 10rem; 
+
+    @include respond(tab-port){
+        width: 100%;
+        padding: 4rem;
+        padding-left: 7rem;
+        margin-bottom: 3rem;
+    }
+    @include respond(phone){
+        transform: skewX(0);
+        margin-bottom: 3rem;
+    }
+
+    & > *{
+        transform: skewX(12deg);
+        @include respond(phone){
+            transform: skewX(0);
+        }
+    }
+    &__shape{
+        position: relative;  
+        width: 15rem;
+        height: 15rem;
+        float: left;
+        shape-outside: circle(50% at 50% 50%);
+        -moz-shape-outside: circle(50% at 50% 50%); //first value is radius and rest two values are position of center
+        clip-path: circle(50% at 50% 50%);
+        -webkit-clip-path: circle(50% at 50% 50%);
+        transform: translateX(-3rem) skewX(12deg); 
+        @include respond(phone){
+            transform: skewX(0)  translateX(-3rem);
+            width: 15rem;
+            height: 15rem;
+        }
+        
+    }
+    &__image{
+        height: 100%;
+        transform: skewX(12deg) translateX(-4rem) scale(1.4);   
+        backface-visibility: hidden;
+        transition: all .5s; 
+        @include respond(phone){
+            transform: skewX(0) translateX(-4rem);
+        }
+    }  
+
+    &__caption{
+        position: absolute;
+        top: 50%;
+        left: 50%; 
+        transform: translate(-50%, 20%); 
+        color: $color-white;
+        text-transform: uppercase;
+        font-size: 1.7rem;
+        text-align: center;   
+        opacity: 0;
+        transition: all .5s; 
+        backface-visibility: hidden; 
+    }
+    &:hover &__caption{
+        opacity: 1; 
+        transform: translate(-50%,-50%);  
+    }
+    &:hover &__image{
+        transform: skewX(12deg) translateX(-4rem) scale(1);
+        backface-visibility: hidden; 
+        filter: blur(3px) brightness(80%);
+    }
+}
